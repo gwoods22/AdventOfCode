@@ -17,10 +17,10 @@ const parseNodesA = (): Node => {
   let a: Node | undefined;
 
   for (let i = 2; i < strData.length; i++) {
-    let match = strData[i].match(/([A-Z]+) = \(([A-Z]+), ([A-Z]+)\)/);
-    let [name, left, right] = match.slice(1);
+    let match: string[] = strData[i].match(/([A-Z]+) = \(([A-Z]+), ([A-Z]+)\)/);
+    let [name, left, right]: string[] = match.slice(1);
 
-    let node = nodes.get(name) || new Node(name);
+    let node: Node = nodes.get(name) || new Node(name);
 
     if (nodes.has(left)) {
       node.left = nodes.get(left)!;
@@ -51,8 +51,8 @@ const partA = (): number => {
   let nodeA: Node = parseNodesA();  
     
   let node: Node = nodeA;
-  let steps: number = 0;
-  let i: number = 0;
+  let steps = 0;
+  let i = 0;
   while (node.name !== 'ZZZ') {
     if (instr[i] === 'L') {
       node = node.left;
@@ -70,11 +70,10 @@ const parseNodesB = (): Node[] => {
   let theAs: Node[] = [];
 
   for (let i = 2; i < strData.length; i++) {
-    // let match = strData[i].match(/([A-Z]+) = \(([A-Z]+), ([A-Z]+)\)/);
-    let match = strData[i].match(/([A-Z0-9]+) = \(([A-Z0-9]+), ([A-Z0-9]+)\)/);
-    let [name, left, right] = match.slice(1);
+    let match: string[] = strData[i].match(/([A-Z0-9]+) = \(([A-Z0-9]+), ([A-Z0-9]+)\)/);
+    let [name, left, right]: string[] = match.slice(1);
 
-    let node = nodes.get(name) || new Node(name);
+    let node: Node = nodes.get(name) || new Node(name);
 
     if (nodes.has(left)) {
       node.left = nodes.get(left)!;
@@ -123,8 +122,8 @@ const partB = (): number => {
   let startNodes: Node[] = parseNodesB();
   
   let nodes: Node[] = startNodes;
-  let steps: number = 0;
-  let i: number = 0;
+  let steps = 0;
+  let i = 0;
   let lcmMap = new Map<string, number>();
 
   while (lcmMap.size < startNodes.length) { 
