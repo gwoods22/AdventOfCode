@@ -1,0 +1,4 @@
+node_modules/
+.sync/
+.vscode/
+.DS_Store
